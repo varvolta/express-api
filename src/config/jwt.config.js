@@ -1,0 +1,2 @@
+export const BEARER_SECRET_KEY = '040d78a40ae0c384fb528c3eedcd65f1'
+export const REFRESH_SECRET_KEY = '03b62516184fb6ef591f45bd4974b753'
