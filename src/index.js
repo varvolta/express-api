@@ -1,11 +1,8 @@
-import jwt                                     from 'jsonwebtoken'
-import dataSource                              from './config/db.config.js'
-import express                                 from 'express'
-import cors                                    from 'cors'
-import bodyParser                              from 'body-parser'
-import {BEARER_SECRET_KEY, REFRESH_SECRET_KEY} from './config/jwt.config.js'
-import sessionsRepository                      from './repositories/sessionsRepository.js'
-import routes                                  from './routes/index.js'
+import dataSource from './config/db.config.js'
+import express    from 'express'
+import cors       from 'cors'
+import bodyParser from 'body-parser'
+import routes     from './routes/index.js'
 
 const app = express()
 const port = 3000
