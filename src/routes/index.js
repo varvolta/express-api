@@ -1,7 +1,7 @@
 import {Router} from 'express'
 
-import auth  from './auth.js'
-import files from './files.js'
+import auth  from './auth.router.js'
+import files from './files.router.js'
 
 const router = Router()
 

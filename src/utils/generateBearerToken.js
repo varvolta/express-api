@@ -1,6 +1,6 @@
 import jwt                 from 'jsonwebtoken'
 import {BEARER_SECRET_KEY} from '../config/jwt.config.js'
-import sessionsRepository  from '../repositories/sessionsRepository.js'
+import sessionsRepository  from '../repositories/sessions.repository.js'
 
 export default async (userId) => {
 	const bearerToken = jwt.sign({userId}, BEARER_SECRET_KEY, {expiresIn: '10m'})

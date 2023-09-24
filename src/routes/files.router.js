@@ -1,5 +1,5 @@
 import {Router}         from 'express'
-import checkBearerToken from '../middleware/checkBearerToken.js'
+import checkBearerToken from '../middleware/jwt/checkBearerToken.js'
 import {
 	upload,
 	list,
@@ -8,7 +8,7 @@ import {
 	download,
 	update
 }                       from '../controllers/files.controller.js'
-import uploader         from '../middleware/uploader.js'
+import uploader         from '../middleware/multer/uploader.js'
 
 const router = Router()
 

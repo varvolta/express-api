@@ -1,5 +1,5 @@
 import Joi             from 'joi'
-import failureResponse from '../responses/failureResponse.js'
+import failureResponse from '../../responses/failure.response.js'
 
 const schema = Joi.object({
 	id: [

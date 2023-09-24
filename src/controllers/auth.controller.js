@@ -1,9 +1,9 @@
 import md5                  from 'md5'
 import httpCodes            from '../constants/httpCodes.js'
-import sessionsRepository   from '../repositories/sessionsRepository.js'
-import userRepository       from '../repositories/userRepository.js'
-import failureResponse      from '../responses/failureResponse.js'
-import successResponse      from '../responses/successResponse.js'
+import sessionsRepository   from '../repositories/sessions.repository.js'
+import userRepository       from '../repositories/user.repository.js'
+import failureResponse      from '../responses/failure.response.js'
+import successResponse      from '../responses/success.response.js'
 import generateBearerToken  from '../utils/generateBearerToken.js'
 import generateRefreshToken from '../utils/generateRefreshToken.js'
 

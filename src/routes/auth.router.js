@@ -1,5 +1,5 @@
 import {Router}          from 'express'
-import checkBearerToken  from '../middleware/checkBearerToken.js'
+import checkBearerToken  from '../middleware/jwt/checkBearerToken.js'
 import {
 	signIn,
 	signUp,
@@ -7,8 +7,8 @@ import {
 	logout,
 	newToken
 }                        from '../controllers/auth.controller.js'
-import checkRefreshToken from '../middleware/checkRefreshToken.js'
-import userValidator     from '../validators/userValidator.js'
+import checkRefreshToken from '../middleware/jwt/checkRefreshToken.js'
+import userValidator     from '../middleware/validators/userValidator.js'
 
 const router = Router()
 

@@ -1,7 +1,7 @@
 import jwt                 from 'jsonwebtoken'
-import {BEARER_SECRET_KEY} from '../config/jwt.config.js'
-import sessionsRepository  from '../repositories/sessionsRepository.js'
-import failureResponse     from '../responses/failureResponse.js'
+import {BEARER_SECRET_KEY} from '../../config/jwt.config.js'
+import sessionsRepository  from '../../repositories/sessions.repository.js'
+import failureResponse     from '../../responses/failure.response.js'
 
 export default async (req, res, next) => {
 	const bearerHeader = req.headers.authorization

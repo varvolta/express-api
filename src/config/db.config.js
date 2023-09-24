@@ -1,7 +1,7 @@
 import {DataSource} from 'typeorm'
-import Session      from '../entities/session.js'
-import User         from '../entities/user.js'
-import File         from '../entities/file.js'
+import Session      from '../entities/session.entity.js'
+import User         from '../entities/user.entity.js'
+import File         from '../entities/file.entity.js'
 
 export default new DataSource({
 	type: 'mysql',

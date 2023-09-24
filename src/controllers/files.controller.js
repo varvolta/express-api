@@ -1,9 +1,9 @@
 import {unlinkSync}    from 'fs'
 import {extname}       from 'path'
 import httpCodes       from '../constants/httpCodes.js'
-import filesRepository from '../repositories/filesRepository.js'
-import failureResponse from '../responses/failureResponse.js'
-import successResponse from '../responses/successResponse.js'
+import filesRepository from '../repositories/files.repository.js'
+import failureResponse from '../responses/failure.response.js'
+import successResponse from '../responses/success.response.js'
 
 export const upload = async (req, res) => {
 	if (!req.file) {

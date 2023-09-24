@@ -1,6 +1,6 @@
 import jwt                  from 'jsonwebtoken'
 import {REFRESH_SECRET_KEY} from '../config/jwt.config.js'
-import sessionsRepository   from '../repositories/sessionsRepository.js'
+import sessionsRepository   from '../repositories/sessions.repository.js'
 
 export default async (userId) => {
 	const refreshToken = jwt.sign({userId}, REFRESH_SECRET_KEY, {expiresIn: '1d'})
