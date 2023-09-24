@@ -28,7 +28,7 @@ export const signUp = async (req, res) => {
 	if (id && password) {
 		let user = await userRepository.findOne({where: {id: id}})
 		if (user) return res.status(409).send('User already exists.')
-		user = userRepository.create({id, password: md5(password)})
+		user = userRepository.create({id, password: md5(password), created_at: Date.now()})
 		await userRepository.save(user)
 		const bearerToken = await generateBearerToken(user.id)
 		const refreshToken = await generateRefreshToken(user.id)

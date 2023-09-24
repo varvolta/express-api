@@ -11,6 +11,9 @@ export default new EntitySchema({
 		},
 		password: {
 			type: 'varchar'
+		},
+		created_at: {
+			type: 'bigint'
 		}
 	}
 })
