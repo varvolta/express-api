@@ -1,6 +1,7 @@
 import jwt                  from 'jsonwebtoken'
 import {REFRESH_SECRET_KEY} from '../config/jwt.config.js'
 import sessionsRepository   from '../repositories/sessionsRepository.js'
+import failureResponse      from '../responses/failureResponse.js'
 
 export default async (req, res, next) => {
 	const {refreshToken} = req.body
@@ -8,7 +9,8 @@ export default async (req, res, next) => {
 	if (refreshToken !== undefined) {
 		try {
 			const {userId} = jwt.verify(refreshToken, REFRESH_SECRET_KEY)
-			if (!userId) res.status(401).send('Access Denied. Wrong refresh token provided.')
+			if (!userId) return failureResponse(res)
+
 			let session = await sessionsRepository.findOne({
 				where: {
 					user_id: userId,
@@ -17,7 +19,7 @@ export default async (req, res, next) => {
 				}
 			})
 
-			if (!session) return res.status(401).send('Access Denied. No session.')
+			if (!session) return failureResponse(res)
 			session.active_at = Date.now()
 
 			await sessionsRepository.save(session)
@@ -25,9 +27,9 @@ export default async (req, res, next) => {
 			req.userId = userId
 			next()
 		} catch (error) {
-			res.status(401).send('Token expired.')
+			failureResponse(res)
 		}
 	} else {
-		res.status(401).send('Access Denied. No refresh token provided.')
+		failureResponse(res)
 	}
 }

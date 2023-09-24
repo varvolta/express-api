@@ -8,12 +8,13 @@ import {
 	newToken
 }                        from '../controllers/auth.controller.js'
 import checkRefreshToken from '../middleware/checkRefreshToken.js'
+import userValidator     from '../validators/userValidator.js'
 
 const router = Router()
 
-router.post('/signin', signIn)
+router.post('/signin', userValidator, signIn)
 router.post('/signin/new_token', checkRefreshToken, newToken)
-router.post('/signup', signUp)
+router.post('/signup', userValidator, signUp)
 router.get('/info', checkBearerToken, info)
 router.get('/logout', checkBearerToken, logout)
 

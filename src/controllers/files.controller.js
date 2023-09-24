@@ -1,6 +1,9 @@
 import {unlinkSync}    from 'fs'
 import {extname}       from 'path'
+import httpCodes       from '../constants/httpCodes.js'
 import filesRepository from '../repositories/filesRepository.js'
+import failureResponse from '../responses/failureResponse.js'
+import successResponse from '../responses/successResponse.js'
 
 export const upload = async (req, res) => {
 	if (!req.file) {
@@ -19,7 +22,7 @@ export const upload = async (req, res) => {
 	})
 
 	await filesRepository.save(file)
-	res.send('Uploaded successfully.')
+	successResponse(res)
 }
 
 export const list = async (req, res) => {
@@ -29,7 +32,7 @@ export const list = async (req, res) => {
 
 	const files = await filesRepository.find({where: {user_id: req.userId}, take, skip})
 
-	res.json(files)
+	successResponse(res, files)
 }
 
 export const deleteById = async (req, res) => {
@@ -38,9 +41,9 @@ export const deleteById = async (req, res) => {
 	const file = await filesRepository.findOne({where: {id}})
 	if (file) {
 		await filesRepository.remove(file)
-		res.send('File deleted.')
+		successResponse(res)
 	} else {
-		res.status(401).send('No file with given id.')
+		failureResponse(res, 'No file with given id.', httpCodes.NOT_FOUND)
 	}
 }
 
@@ -50,9 +53,9 @@ export const info = async (req, res) => {
 	const file = await filesRepository.findOne({where: {id}})
 
 	if (file) {
-		res.json(file)
+		successResponse(res, file)
 	} else {
-		res.status(401).send('No file with given id.')
+		failureResponse(res, 'No file with given id.', httpCodes.NOT_FOUND)
 	}
 }
 
@@ -64,7 +67,7 @@ export const download = async (req, res) => {
 	if (file) {
 		res.download('uploads/' + file.name)
 	} else {
-		res.status(401).send('No file with given id.')
+		failureResponse(res, 'No file with given id.', httpCodes.NOT_FOUND)
 	}
 }
 
@@ -85,10 +88,10 @@ export const update = async (req, res) => {
 		file.uploaded_at = Date.now()
 
 		await filesRepository.save(file)
-		
-		res.send('Updated successfully.')
+
+		successResponse(res)
 	} else {
-		res.status(401).send('No file with given id.')
+		failureResponse(res, 'No file with given id.', httpCodes.NOT_FOUND)
 	}
 }
 
