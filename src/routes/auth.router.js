@@ -8,7 +8,7 @@ import {
 	newToken
 }                        from '../controllers/auth.controller.js'
 import checkRefreshToken from '../middleware/jwt/checkRefreshToken.js'
-import userValidator     from '../middleware/validators/userValidator.js'
+import userValidator     from '../middleware/validators/user.validator.js'
 
 const router = Router()
 

@@ -27,8 +27,8 @@ export const upload = async (req, res) => {
 
 export const list = async (req, res) => {
 	const {list_size = 10, page = 1} = req.query
-	const skip = (page - 1) * list_size
-	const take = list_size * page
+	const skip = list_size * page - 1
+	const take = list_size
 
 	const files = await filesRepository.find({where: {user_id: req.userId}, take, skip})
 
